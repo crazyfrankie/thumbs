@@ -1,0 +1,8 @@
+server:
+  port: ":8082"
+
+tidb:
+  dsn: "%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&tls=true&parseTime=true&loc=Local"
+
+redis:
+  addr: "localhost:8836"
