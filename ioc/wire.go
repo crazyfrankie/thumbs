@@ -3,7 +3,9 @@ package ioc
 import (
 	"fmt"
 	"os"
+	"time"
 
+	"github.com/redis/go-redis/v9"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -30,4 +32,17 @@ func InitDB() *gorm.DB {
 	}
 
 	return db
+}
+
+func InitRedis() redis.Cmdable {
+	client := redis.NewClient(&redis.Options{
+		Network:      "tcp",
+		Addr:         config.GetConf().Redis.Addr,
+		DialTimeout:  time.Second,
+		ReadTimeout:  time.Second * 3,
+		WriteTimeout: time.Second * 5,
+		PoolSize:     20,
+	})
+
+	return client
 }

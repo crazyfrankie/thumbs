@@ -21,10 +21,12 @@ type Config struct {
 	Server Server `yaml:"server"`
 	TiDB   TiDB   `yaml:"tidb"`
 	Redis  Redis  `yaml:"redis"`
+	ETCD   ETCD   `yaml:"etcd"`
 }
 
 type Server struct {
 	Port string `yaml:"port"`
+	TTL  int64  `yaml:"ttl"`
 }
 
 type TiDB struct {
@@ -32,6 +34,10 @@ type TiDB struct {
 }
 
 type Redis struct {
+	Addr string `yaml:"addr"`
+}
+
+type ETCD struct {
 	Addr string `yaml:"addr"`
 }
 
